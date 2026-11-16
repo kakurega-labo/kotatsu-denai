@@ -349,7 +349,7 @@ function showResult(){
   $('rChips').innerHTML=Object.keys(cnt).map(k=>'<i>'+KIND[k].n+(cnt[k]>1?'×'+cnt[k]:'')+'</i>').join('')||'<i>なにも取れなかった</i>';
   $('rGot').textContent=n+'こ';$('rOut').textContent=ot+'秒';$('rMax').textContent=Math.round(maxOut*CM)+'cm';
   $('rBonusRow').style.display=bonus?'flex':'none';$('rBonusL').textContent=bl;$('rBonus').textContent='+'+bonus;
-  const txt='【'+rank+'】こたつに入ったまま '+n+'こ取って '+total+'点。'+(outCount?'こたつから出ていたのは '+ot+'秒。':'一度も出ませんでした。')+'\n#こたつから出ない';lastRes={rank,total,n,ot,cnt,out:outCount>0};shareTxt=txt;
+  const txt='【'+rank+'】こたつに入ったまま '+n+'こ取って '+total+'点。'+(outCount?'こたつから出ていたのは '+ot+'秒。':'一度も出ませんでした。')+'\n#こたつから出ない民';lastRes={rank,total,n,ot,cnt,out:outCount>0};shareTxt=txt;
   $('bPost').href='https://x.com/intent/post?text='+encodeURIComponent(txt)+'&url='+encodeURIComponent(SITE);
   $('result').classList.add('on');
 }
@@ -867,7 +867,7 @@ const SITE='https://kotatsu-denai.pages.dev/';let lastRes=null,shareTxt='';
 async function makeCard(){
   const r=lastRes,c=document.createElement('canvas');c.width=1200;c.height=630;
   // 書体は文字ごとに分けて読み込まれるので、描く文字を先に読み込む（最大2.5秒）
-  const all='きょうのこたつ手元に来たもの出ていた時間点こ秒一度も出なかったなにも取れなかった0123456789'+r.rank+'こたつから出ない#kotatsu-denai.pages.dev';
+  const all='きょうのこたつ手元に来たもの出ていた時間点こ秒一度も出なかったなにも取れなかった0123456789'+r.rank+'こたつから出ない民#kotatsu-denai.pages.dev';
   try{await Promise.race([Promise.all([document.fonts.load('900 40px "Zen Maru Gothic"',all),document.fonts.load('700 40px "Zen Maru Gothic"',all)]),new Promise(z=>setTimeout(z,2500))])}catch(e){}
   const keep=ctx,g=c.getContext('2d');ctx=g;
   try{
@@ -894,7 +894,7 @@ async function makeCard(){
     const row=(l,v,y)=>{g.font='700 28px '+FONT;g.fillStyle='#1E1B18';g.textAlign='left';g.fillText(l,X,y);g.textAlign='right';g.font='900 30px '+FONT;g.fillText(v,1160,y)};
     row('手元に来たもの',r.n+'こ',408);row('出ていた時間',r.out?r.ot+'秒':'一度も出なかった',458);
     g.textAlign='left';g.font='900 34px '+FONT;g.fillStyle='#D2492F';g.fillText('こたつから出ない',X,548);
-    g.font='700 22px '+FONT;g.fillStyle='#8a7a63';g.fillText('#こたつから出ない　kotatsu-denai.pages.dev',X,586);
+    g.font='700 22px '+FONT;g.fillStyle='#8a7a63';g.fillText('#こたつから出ない民　kotatsu-denai.pages.dev',X,586);
   }finally{ctx=keep}
   return c;
 }
